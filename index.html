@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alan's Blog</title>
+  <style>
+    /* ── 🎨 Early-90s Salmon & Teal Palette ── */
+    :root {
+      --salmon:      #FA8072;
+      --salmon-lt:   #FFADA3;
+      --salmon-dk:   #D95F52;
+      --teal:        #008080;
+      --teal-lt:     #4DB6AC;
+      --teal-dk:     #005F5F;
+      --cream:       #FFF8F0;
+      --off-white:   #FFF0E8;
+      --dark-text:   #2C2C2C;
+      --shadow:      rgba(0,128,128,0.18);
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: var(--cream);
+      color: var(--dark-text);
+      line-height: 1.7;
+    }
+
+    /* ── Squiggly top border (pure CSS) ── */
+    body::before {
+      content: '';
+      display: block;
+      height: 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--salmon) 0px, var(--salmon) 20px,
+        var(--teal)   20px, var(--teal)   40px
+      );
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--teal);
+      color: var(--cream);
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '✦ ✦ ✦';
+      display: block;
+      font-size: 1.4rem;
+      color: var(--salmon-lt);
+      margin-top: 0.6rem;
+      letter-spacing: 0.5rem;
+    }
+
+    header h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-style: italic;
+      letter-spacing: 0.04em;
+      text-shadow: 3px 3px 0 var(--teal-dk);
+    }
+
+    header .tagline {
+      font-size: 1.1rem;
+      color: var(--salmon-lt);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ── Travel Banner ── */
+    .travel-banner {
+      background: var(--salmon);
+      color: #fff;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 4px solid var(--salmon-dk);
+    }
+
+    .travel-banner span {
+      background: var(--teal);
+      color: #fff;
+      border-radius: 4px;
+      padding: 0 6px;
+      margin: 0 4px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: var(--teal-dk);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+      border-right: 1px solid var(--teal);
+    }
+
+    nav a:last-child { border-right: none; }
+
+    nav a:hover {
+      background: var(--salmon);
+      color: #fff;
+    }
+
+    /* ── Main Layout ── */
+    main {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1.2rem;
+    }
+
+    /* ── Section Headings ── */
+    .section-title {
+      font-size: 1.9rem;
+      color: var(--teal-dk);
+      border-left: 8px solid var(--salmon);
+      padding-left: 0.75rem;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+
+    /* ── Hobby Cards ── */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .card {
+      background: var(--off-white);
+      border: 3px solid var(--teal-lt);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 6px 6px 0 var(--shadow);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--shadow);
+    }
+
+    .card-header {
+      background: var(--salmon);
+      color: #fff;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .card-header .emoji {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .card-header h2 {
+      font-size: 1.35rem;
+      font-style: italic;
+      letter-spacing: 0.03em;
+    }
+
+    .card-body {
+      padding: 1.2rem 1.4rem;
+    }
+
+    .card-body p {
+      font-size: 0.97rem;
+      color: #444;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-body p:last-child { margin-bottom: 0; }
+
+    /* alternate card accent color */
+    .card:nth-child(even) .card-header {
+      background: var(--teal);
+    }
+
+    /* ── Fun Fact Box ── */
+    .fun-fact {
+      background: var(--teal);
+      color: #fff;
+      border-radius: 4px;
+      padding: 1.4rem 1.8rem;
+      margin-bottom: 3rem;
+      border-left: 8px solid var(--salmon-dk);
+      box-shadow: 6px 6px 0 var(--shadow);
+      font-size: 1.05rem;
+    }
+
+    .fun-fact strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+      color: var(--salmon-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--teal-dk);
+      color: var(--cream);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+    }
+
+    footer::before {
+      content: '';
+      display: block;
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--salmon) 0px, var(--salmon) 16px,
+        var(--teal-lt) 16px, var(--teal-lt) 32px
+      );
+      margin-bottom: 1rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .hobby-grid { grid-template-columns: 1fr; }
+      nav a { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <h1>Alan's Blog</h1>
+    <p class="tagline">Life is too short for boring hobbies 🎉</p>
+  </header>
+
+  <!-- ══ TRAVEL BANNER ══ -->
+  <div class="travel-banner">
+    🌍 World Traveler Alert &mdash;
+    <span>5 Continents</span> explored &amp;
+    <span>40 States</span> and counting! 🗺️
+  </div>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="#cooking">🍳 Cooking</a>
+    <a href="#theater">🎭 Theater</a>
+    <a href="#puppies">🐾 My Puppies</a>
+    <a href="#fitness">💪 Health &amp; Fitness</a>
+  </nav>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- Hobby Cards -->
+    <h2 class="section-title">What I'm Into</h2>
+
+    <div class="hobby-grid">
+
+      <!-- Cooking -->
+      <div class="card" id="cooking">
+        <div class="card-header">
+          <span class="emoji">🍳</span>
+          <h2>Cooking</h2>
+        </div>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula sapien vel felis tincidunt, at fermentum nisi gravida. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.</p>
+          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+        </div>
+      </div>
+
+      <!-- Theater -->
+      <div class="card" id="theater">
+        <div class="card-header">
+          <span class="emoji">🎭</span>
+          <h2>Theater</h2>
+        </div>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis molestie dictum semper, nunc augue iaculis purus, quis pulvinar nunc augue at nisi.</p>
+          <p>Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+        </div>
+      </div>
+
+      <!-- My Puppies -->
+      <div class="card" id="puppies">
+        <div class="card-header">
+          <span class="emoji">🐾</span>
+          <h2>My Puppies</h2>
+        </div>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum. Nullam varius nulla a nisi. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio, et tempor feugiat. Donec pretium posuere tellus.</p>
+          <p>Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.</p>
+        </div>
+      </div>
+
+      <!-- Health & Fitness -->
+      <div class="card" id="fitness">
+        <div class="card-header">
+          <span class="emoji">💪</span>
+          <h2>Health &amp; Fitness</h2>
+        </div>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor.</p>
+          <p>Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi.</p>
+        </div>
+      </div>
+
+    </div><!-- /.hobby-grid -->
+
+    <!-- Fun Fact -->
+    <div class="fun-fact">
+      <strong>✈️ Alan's World Tour</strong>
+      Five continents explored, forty U.S. states checked off — and the adventure is far from over.
+      Whether it's a weekend road trip or a flight to somewhere new, Alan is always ready to pack a bag
+      and see what's around the next corner. 🌏🌎🌍
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>✦ Alan's Blog &mdash; Cooking · Theater · Puppies · Fitness · Travel ✦</p>
+    <p style="margin-top:0.4rem; opacity:0.7;">Made with 🐾 salmon &amp; teal since the early 90s</p>
+  </footer>
+
+</body>
+</html>
