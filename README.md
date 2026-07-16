@@ -1,6 +1,6 @@
 # test_repo
 
-The espresso machine hissed right as Maren dropped a tray of ceramic mugs, and the sound made her wince before she even looked down to check the damage. Two mugs had survived; the third lay in shards near the pastry case. Devon, wiping down the counter, didn't even glance over — just reached under the register for the dustpan and slid it across the floor like he'd done it a hundred times before, because he had.
+The espresso machine hissed right as Maren dropped a tray of ceramic mugs, and the sound made her wince before she even looked down to check the damage. Two mugs had survived; the third lay in shards near the pastry case. Devon, wiping down the counter, didn't even glance over — just reached under the register for the dustpan and slid it across the floor like he'd done it a hundred times before, because he had. We sure are cute puppies!
 
 "That's the third one this month," he said, not unkindly, as Maren crouched to sweep up the pieces. "At this rate we're gonna owe Priya rent for the whole set."
 
