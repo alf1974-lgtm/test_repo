@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alan's Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Palette ──────────────────────────────────────────────
+       Salmon  : #FA8072  (accent / headings)
+       Teal    : #3AAFA9  (links / highlights)
+       Cream   : #FFF5EE  (page background)
+       Dusty   : #F2C4B0  (card backgrounds)
+       Dark    : #2B4141  (body text)
+    ─────────────────────────────────────────────────────────── */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #FFF5EE;
+      color: #2B4141;
+      line-height: 1.7;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #FA8072 0%, #3AAFA9 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      /* subtle 90s geometric squiggle layer */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.06) 0px,
+          rgba(255,255,255,0.06) 2px,
+          transparent 2px,
+          transparent 18px
+        );
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(43,65,65,0.25);
+      letter-spacing: 1px;
+    }
+
+    header .tagline {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 0.5px;
+    }
+
+    header .emoji-row {
+      margin-top: 1rem;
+      font-size: 1.8rem;
+      letter-spacing: 0.4rem;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    nav {
+      background: #3AAFA9;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      padding: 0.6rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(43,65,65,0.2);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      background: #FA8072;
+      color: #fff;
+    }
+
+    /* ── Main layout ─────────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────── */
+    .card {
+      background: #F2C4B0;
+      border-radius: 18px;
+      padding: 2rem 2.25rem;
+      box-shadow: 5px 5px 0 #FA8072;
+      border: 2px solid #FA8072;
+      transition: transform 0.15s, box-shadow 0.15s;
+      scroll-margin-top: 70px;
+    }
+
+    .card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #3AAFA9;
+      border-color: #3AAFA9;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .card h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.75rem;
+      color: #FA8072;
+      text-shadow: 1px 1px 0 rgba(43,65,65,0.15);
+    }
+
+    .card p {
+      font-size: 1.05rem;
+      color: #2B4141;
+    }
+
+    .card .tag-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: #3AAFA9;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── "Coming Soon" placeholder ───────────────────────────── */
+    .coming-soon {
+      font-style: italic;
+      color: #3AAFA9;
+      font-weight: 600;
+      margin-top: 0.6rem;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: #2B4141;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer span {
+      color: #FA8072;
+      font-weight: 800;
+    }
+
+    /* ── Responsive tweaks ───────────────────────────────────── */
+    @media (max-width: 600px) {
+      .card { padding: 1.4rem 1.25rem; }
+      .card h2 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════════ -->
+  <header>
+    <h1>Alan's Blog</h1>
+    <p class="tagline">A coder and a cook, but mostly a dog lover 🐾</p>
+    <div class="emoji-row">🍳 🏋️ 🥗 🐶</div>
+  </header>
+
+  <!-- ══ NAV ═════════════════════════════════════════════════ -->
+  <nav>
+    <a href="#cooking">Cooking</a>
+    <a href="#fitness">Fitness</a>
+    <a href="#healthy-eating">Healthy Eating</a>
+    <a href="#puppies">My Puppies</a>
+  </nav>
+
+  <!-- ══ MAIN CONTENT ════════════════════════════════════════ -->
+  <main>
+
+    <!-- Cooking -->
+    <section class="card" id="cooking">
+      <div class="card-header">
+        <span class="card-icon">🍳</span>
+        <h2>Cooking</h2>
+      </div>
+      <p>
+        The kitchen is my happy place. Whether I'm experimenting with a new recipe on a lazy Sunday
+        or throwing together something quick after a long day, cooking is where creativity meets
+        comfort. There's nothing quite like the smell of something good on the stove — and the
+        satisfaction of eating something you made yourself is unbeatable.
+      </p>
+      <p class="coming-soon">✏️ More stories, recipes, and kitchen disasters coming soon…</p>
+      <div class="tag-row">
+        <span class="tag">Recipes</span>
+        <span class="tag">Meal Prep</span>
+        <span class="tag">Kitchen Experiments</span>
+      </div>
+    </section>
+
+    <!-- Fitness & Weightlifting -->
+    <section class="card" id="fitness">
+      <div class="card-header">
+        <span class="card-icon">🏋️</span>
+        <h2>Fitness &amp; Weightlifting</h2>
+      </div>
+      <p>
+        Lifting heavy things and putting them back down — it never gets old. Fitness is as much
+        about the mental game as the physical one. The gym is where I clear my head, push my limits,
+        and prove to myself that last week's PR is just this week's warm-up. Progress is the goal,
+        not perfection.
+      </p>
+      <p class="coming-soon">✏️ Workout logs, tips, and personal bests coming soon…</p>
+      <div class="tag-row">
+        <span class="tag">Weightlifting</span>
+        <span class="tag">Strength Training</span>
+        <span class="tag">PRs</span>
+      </div>
+    </section>
+
+    <!-- Healthy Eating -->
+    <section class="card" id="healthy-eating">
+      <div class="card-header">
+        <span class="card-icon">🥗</span>
+        <h2>Healthy Eating</h2>
+      </div>
+      <p>
+        Eating well doesn't have to be boring — that's basically my whole philosophy. Fuelling the
+        body right is the foundation for everything else: better workouts, better energy, better
+        mood. I love finding ways to make nutritious food taste genuinely delicious, because life's
+        too short for sad salads.
+      </p>
+      <p class="coming-soon">✏️ Nutrition tips, favourite meals, and macro magic coming soon…</p>
+      <div class="tag-row">
+        <span class="tag">Nutrition</span>
+        <span class="tag">Meal Planning</span>
+        <span class="tag">Clean Eating</span>
+      </div>
+    </section>
+
+    <!-- My Puppies -->
+    <section class="card" id="puppies">
+      <div class="card-header">
+        <span class="card-icon">🐶</span>
+        <h2>My Puppies</h2>
+      </div>
+      <p>
+        Let's be honest — this is the real reason you're here. My dogs are the best part of every
+        single day. They greet me like I've been gone for years even if I just stepped out for five
+        minutes, they have absolutely no concept of personal space, and I wouldn't change a thing.
+        Dog lover first, everything else second.
+      </p>
+      <p class="coming-soon">✏️ Photos, names, and puppy adventures coming soon…</p>
+      <div class="tag-row">
+        <span class="tag">Dogs</span>
+        <span class="tag">Puppy Life</span>
+        <span class="tag">Best Boys &amp; Girls</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+  <footer>
+    <p>Made with <span>♥</span> by Alan &nbsp;·&nbsp; A coder, a cook, and a very devoted dog dad 🐾</p>
+  </footer>
+
+</body>
+</html>
